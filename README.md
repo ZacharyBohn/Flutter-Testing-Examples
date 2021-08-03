@@ -136,7 +136,7 @@ void main() {
 
 ***
 
-Different ways to add widgets to the build area:
+Differences between pumps
 ```dart
 void main() {
   testWidgets(
