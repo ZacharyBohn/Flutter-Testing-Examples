@@ -47,7 +47,7 @@ Adding widgets to the build area
 Performing actions / changing data
 Checking if the widget responded correctly
 
-```
+```dart
 void main() {
   testWidgets(
     'Phone text field',
@@ -67,7 +67,7 @@ void main() {
 ### Widget Tests - Syntax
 
 For widget tests, each widget in lib should have a corresponding file in the test folder.  Within this file, there should be a single main() function that will be used to run the tests.  Within the main() function, here is a list of functions that you can call:
-```
+```dart
 void main() {
   // This is called once before ALL tests
   setUpAll(() {
@@ -101,7 +101,7 @@ void main() {
 
 
 Additionally, you can call a group of tests from main if you would like to test multiple functionalities.
-```
+```dart
 void main() {
   // This is used to run a group of tests
   group(
@@ -130,7 +130,7 @@ void main() {
 
 
 Different ways to add widgets to the build area:
-```
+```dart
 void main() {
   testWidgets(
     'Widget test pump usage and syntax',
@@ -156,7 +156,7 @@ Notes on WidgetTester
 
 
 Ways to find widgets:
-```
+```dart
 void main() {
   testWidgets(
     'Widget test finder usage and syntax',
