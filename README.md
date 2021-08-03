@@ -150,7 +150,7 @@ void main() {
 
 Notes on WidgetTester
   1. ```pumpWidget()``` - builds the parent widget in memory for testing
-    a. Duration is required in ```pumpAndSettle()``` if the widget being tested uses ```Future.delayed()```
+    a. Duration is required in ```pumpAndSettle()``` if the widget being tested uses ```Future.delayed()``` such as a splash screen
   2. ```pumpAndSettle()``` - render all the frames of the widget that was passed into it
 
 ***
