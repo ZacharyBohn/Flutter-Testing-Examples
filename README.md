@@ -55,9 +55,9 @@ Use flutter test to run all tests within the test folder.  This command will rec
 
 
 When testing a widget in Flutter, there are basically three parts of a test.
-Adding widgets to the build area
-Performing actions / changing data
-Checking if the widget responded correctly
+1. Adding widgets to the build area
+2. Performing actions / changing data
+3. Checking if the widget responded correctly
 
 ```dart
 void main() {
