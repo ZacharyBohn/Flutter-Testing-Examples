@@ -8,6 +8,7 @@ There are three types of tests to be performed in Flutter
   2. Integration tests - used to ensure that features (consisting of several widgets / functions) work correctly together
   3. Unit tests - used to test a specific function / method / class that do not have widgets. Can use mockito package to test HTTP calls
 
+***
 
 ### Getting Started
 
@@ -34,10 +35,13 @@ project_root /
 ```
 
 
+***
+
 ### Running Tests
 
 Use flutter test to run all tests within the test folder.  This command will recursively read all files, even in the sub-folders.  For a test to be run, it’s file name must end in “_test.dart”.  Alternatively, you can select the beaker icon in VS Code and click the play button.  This provides a UI for running tests and seeing if they have passed.
 
+***
 
 ### Widget Tests - Basics
 
@@ -63,6 +67,7 @@ void main() {
 }
 ```
 
+***
 
 ### Widget Tests - Syntax
 
@@ -96,10 +101,6 @@ void main() {
 }
 ```
 
-
-
-
-
 Additionally, you can call a group of tests from main if you would like to test multiple functionalities.
 ```dart
 void main() {
@@ -125,9 +126,7 @@ void main() {
 }
 ```
 
-
-
-
+***
 
 Different ways to add widgets to the build area:
 ```dart
@@ -150,10 +149,11 @@ void main() {
 
 
 Notes on WidgetTester
-  1. pumpWidget() - builds the parent widget in memory for testing
-    a. Duration is required in pumpAndSettle() if the widget being tested uses Future.delayed()
-  2. pumpAndSettle() - render all the frames of the widget that was passed into it
+  1. ```pumpWidget()``` - builds the parent widget in memory for testing
+    a. Duration is required in ```pumpAndSettle()``` if the widget being tested uses ```Future.delayed()```
+  2. ```pumpAndSettle()``` - render all the frames of the widget that was passed into it
 
+***
 
 Ways to find widgets:
 ```dart
