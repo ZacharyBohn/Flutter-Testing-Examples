@@ -1,5 +1,13 @@
 # Flutter Testing Cookbook
 
+### Purpose
+
+The purpose of this REAMDME and this repo is give examples and explanations for the basics of Flutter tests.  In addition to this resource, there are several first party documents worth reading:
+1. https://flutter.dev/docs/cookbook/testing/unit/introduction
+2. https://flutter.dev/docs/cookbook/testing/widget/introduction
+3. https://flutter.dev/docs/cookbook/testing/integration/introduction
+
+***
 
 ### Basics
 
@@ -224,6 +232,66 @@ void main() {
 }
 ```
 
+***
+
+### Manipulating Widgets During A Test
+
+You can enter text into widgets, tap widgets, or perform other gestures on the screen in order to interact with widgets automitcally during a test.
+
+#### Enter Text Example
+
+```dart
+void main() {
+  testWidgets('TextField test', (WidgetTester tester) async {
+    // Both a MaterialApp and a Scaffold are necessary for the TextField
+    // widget to build at all
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: TextField(),
+      ),
+    ));
+
+    // Enter the text into the TextField widget
+    await tester.enterText(
+        find.byType(TextField), 'Some text that will be entered');
+
+    // Allow time for the animations to finish
+    await tester.pumpAndSettle();
+
+    // This will pass since the text was typed onto the screen
+    expect(find.text('Some text that will be entered'), findsOneWidget);
+  });
+}
+```
+
+***
+
+#### Tapping The Screen Example
+
+```dart
+vvoid main() {
+  testWidgets('TextField test', (WidgetTester tester) async {
+    int value = 0;
+
+    await tester.pumpWidget(MaterialApp(
+      home: FloatingActionButton(
+        onPressed: () {
+          value = 99;
+        },
+      ),
+    ));
+
+    // Tap the FloatingActionButton
+    await tester.tap(find.byType(FloatingActionButton));
+
+    // Allow time for the animations to finish
+    await tester.pumpAndSettle();
+
+    // This will pass if value was changed to 99
+    expect(value, 99);
+  });
+}
+```
 
 
 
