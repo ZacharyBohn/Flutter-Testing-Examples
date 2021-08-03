@@ -191,3 +191,47 @@ void main() {
 }
 ```
 
+***
+
+### Expect and Matcher Finders
+
+```expect()``` is a function that serves as the ```assert``` but for testing.   It takes two values, and if they are unequal, then the test fails.  It will typically be found at the end of a test.  Notice the different finders such as ```findsOneWidget``` or ```findsNWidgets(n)``` which can be used to compare to how many results are returned from a finder (the first paramter given to ```expect()```).  ```MaterialApp()``` must be used above must widgets or they will fail to build.  Any failures in building widgets, will cause the test to fail.
+
+```dart
+void main() {
+  testWidgets('Text widget', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Text('some text'),
+    ));
+
+    // There is only one widget like this, so this will pass
+    expect(find.byType(Text), findsOneWidget);
+    // The given text is on the screen so this will pass
+    expect(find.text('some text'), findsOneWidget);
+    // This will fail since no widgets have this key
+    expect(find.byKey(GlobalKey()), findsWidgets);
+    // This will pass, since it is searching for the exact instance
+    // given to it.  The instances don't match between what was pumped
+    // and what was given to find.byWidget().
+    expect(find.byWidget(Text('some text')), findsNothing);
+    // This will pass since there is 1 widget that is a Text widget and
+    // has 'some text' as its data
+    expect(
+        find.byWidgetPredicate(
+            (widget) => widget is Text && widget.data == 'some text'),
+        findsNWidgets(1));
+  });
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
