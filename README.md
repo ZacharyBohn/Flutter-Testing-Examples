@@ -4,9 +4,9 @@
 ### Basics
 
 There are three types of tests to be performed in Flutter
-Widget tests - used to test individual widgets, in isolation
-Integration tests - used to ensure that features (consisting of several widgets / functions) work correctly together
-Unit tests - used to test a specific function / method / class that do not have widgets. Can use mockito package to test HTTP calls
+  1. Widget tests - used to test individual widgets, in isolation
+  2. Integration tests - used to ensure that features (consisting of several widgets / functions) work correctly together
+  3. Unit tests - used to test a specific function / method / class that do not have widgets. Can use mockito package to test HTTP calls
 
 
 ### Getting Started
