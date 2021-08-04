@@ -236,7 +236,7 @@ void main() {
 
 ### Manipulating Widgets During A Test
 
-You can enter text into widgets, tap widgets, or perform other gestures on the screen in order to interact with widgets automitcally during a test.
+You can enter text into widgets, tap widgets, or perform other gestures on the screen in order to interact with widgets automatically during a test.
 
 #### Enter Text Example
 
