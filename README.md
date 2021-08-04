@@ -309,7 +309,7 @@ void main() {
     final previousCheck = Provider.debugCheckInvalidValueType;
     Provider.debugCheckInvalidValueType = <T>(T value) {
       // The exact provider that it being tested with should be
-      // provideded here.  Feel free to use multiple lines like this
+      // provided here.  Feel free to use multiple lines like this
       // if multiple providers are used.
       if (value is SomeProvider) return;
       previousCheck!<T>(value);
