@@ -293,6 +293,44 @@ vvoid main() {
 }
 ```
 
+***
+
+### Testing While Using Providers
+
+Normally, you would test a widget in isolation.  You provide input to the widget, it performs some action or displays something, then you test for that.  However, when providers are called from inside a widget, then you are unable to pass providers to the widget.  This makes writing tests difficult.  The way around this is in your test, to wrap your widget with a provider.  That way, when your widget checks its context, then the provider is available.  There is a weird bug that happens when testing providers; the solution to that bug is shown below.
+
+```dart
+void main() {
+  testWidgets('Provider value is accessible', (WidgetTester tester) async {
+    // Using a provider will universally fail any test.  The type of the provider
+    // gets changed while testing, which causes a failure before the test even runs.
+    // This gets around that by explicitly allowing a specific type of provider
+    // to essentially be ignored.
+    final previousCheck = Provider.debugCheckInvalidValueType;
+    Provider.debugCheckInvalidValueType = <T>(T value) {
+      // The exact provider that it being tested with should be
+      // provideded here.  Feel free to use multiple lines like this
+      // if multiple providers are used.
+      if (value is SomeProvider) return;
+      previousCheck!<T>(value);
+    };
+
+    // Wrap the widget to be tested in a provider.
+    // MultiProvider could also be used here
+    await tester.pumpWidget(
+      Provider<SomeProvider>(
+        create: (context) => SomeProvider('Some Text'),
+        child: MaterialApp(
+          home: AppText(),
+        ),
+      ),
+    );
+
+    expect(find.byType(AppText), findsOneWidget);
+    expect(find.text('Some Text'), findsOneWidget);
+  });
+}
+```
 
 
 
