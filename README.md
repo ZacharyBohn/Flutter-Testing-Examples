@@ -299,6 +299,8 @@ vvoid main() {
 
 Normally, you would test a widget in isolation.  You provide input to the widget, it performs some action or displays something, then you test for that.  However, when providers are called from inside a widget, then you are unable to pass providers to the widget.  This makes writing tests difficult.  The way around this is in your test, to wrap your widget with a provider.  That way, when your widget checks its context, then the provider is available.  There is a weird bug that happens when testing providers; the solution to that bug is shown below.
 
+Instead of giving the actual provider to the widget tests, it is better to create a fake provider which extends the real provider.  On the fake provider, you can substitute calls to the database or to firebase auth with fake calls.  This way, the widgets tests won't have to touch the network.
+
 ```dart
 void main() {
   testWidgets('Provider value is accessible', (WidgetTester tester) async {
@@ -316,11 +318,15 @@ void main() {
     };
 
     // Wrap the widget to be tested in a provider.
-    // MultiProvider could also be used here
+    // Make sure that the Multiprovider is ABOVE
+    // the MaterialApp in the widget tree.
     await tester.pumpWidget(
-      Provider<SomeProvider>(
-        create: (context) => SomeProvider('Some Text'),
-        child: MaterialApp(
+      MultiProvider(
+        providers: [
+          Provider<SomeProvider>(
+              create: (context) => FakeSomeProvider('Some Text')),
+        ],
+        builder: (context, _) => MaterialApp(
           home: AppText(),
         ),
       ),
